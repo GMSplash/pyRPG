@@ -158,6 +158,36 @@ while game_running == True:
 
     elif current_room == "sewer entrance":
 
+        print("You enter through the iron gate. The path slopes downward. you begin to hear dripping water and the smell of stagnat water and something acrid. As you hit the bottom of the slope a sewer system sprawls out before you. You can see tunnels leading off to the left, the right, and infront of you.")
+        print("1. Move to the left")
+        print("2. Move to the right")
+        print("3. Continue forward.")
+        print("4. Go back")
+        print("5. Search the area")
+
+        move_choice = int(
+            input("Type the number associated with the action you want to preform: ")
+        )
+
+        if move_choice == 1:
+            current_room = "slimy room"
+
+        elif move_choice == 2:
+            current_room =
+
+        elif move_choice == 3:
+            current_room =
+
+        elif move_choice == 4:
+            current_room =
+            
+        elif move_choice == 5:
+            roll_loot = random.randint(1, 20)
+            gold += roll_loot
+            print(
+                f"You look around the room and find a leather pouch. When you pick it up you hear the jingle of coins. Upon opening you find {roll_loot} gold. You now have {gold} gold."
+            )
+
     elif current_room == "slimy room":
 
 
