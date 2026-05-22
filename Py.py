@@ -156,5 +156,9 @@ while game_running == True:
         elif move_choice == 2:
             current_room = "entryway"
 
+    elif current_room == "sewer entrance":
+
+    elif current_room == "slimy room":
+
 
 print("You died!")
