@@ -192,3 +192,14 @@ while game_running == True:
 
 
 print("You died!")
+
+
+#lets try building an enemy then a combat encounter.
+#start off with a slime? since we have a "Slimy Room"
+enemy_type = "Slime"
+enemy_name = "Green Slime"
+enemy_health = 10
+enemy_damage = random.randint(2, 4)
+enemy_exp = random.randint(5, 10)
+#thinking to add a loot system that is more than gold. Go ahead and set variable to that. For now probably just gold.
+enemy_loot = random.randint(1, 10)
