@@ -28,6 +28,15 @@ gold = 0
 current_weapon = "Unarmed"
 weapon_stash = []
 
+# Enemies:
+enemy_type = "Slime"
+enemy_name = "Green Slime"
+enemy_health = 10
+enemy_damage = 0
+enemy_exp = random.randint(5, 10)
+#thinking to add a loot system that is more than gold. Go ahead and set variable to that. For now probably just gold.
+enemy_loot = random.randint(1, 10)
+
 # exploration:
 current_room = "entryway"
 
@@ -182,24 +191,49 @@ while game_running == True:
             current_room =
             
         elif move_choice == 5:
-            roll_loot = random.randint(1, 20)
-            gold += roll_loot
-            print(
-                f"You look around the room and find a leather pouch. When you pick it up you hear the jingle of coins. Upon opening you find {roll_loot} gold. You now have {gold} gold."
-            )
+            print("A green blob rolls infront of you. The blob suddenly shudders and jumps at you!")
+
+            while enemy_health > 0 and char_health > 0:
+
+
+                print("1. Attack")
+                print("2. Defend")
+                print("3. Run")
+
+                char_choice = int(input("Type the number associated with the action you want to preform: "))
+
+                if char_choice == 1:
+                        damage = random.randint(1, 3) + char_str
+                        enemy_health -= damage
+                        
+                        if enemy_health > 0:
+                            print(f"You dealt {damage} to the Green Slime.")
+                        
+                        else:
+                            print("You killed the slime!")
+                            char_exp += enemy_exp
+                            gold += enemy_loot
+                            print(f"You gained {enemy_exp}EXP and {enemy_loot}gold.")
+                
+                elif char_choice == 2:
+                    print("You take a defensive stance.")
+                    print("The Slime attacks you!")
+                    enemy_damage = random.randint(1, 3)
+                    char_health -= enemy_damage - char_con
+                        
+                    if char_health > 0:
+                        print(f"You take {enemy_damage} damage. You were able to block {char_con} due to your defensive stance")
+
+                    else:
+                        print(f"You take {enemy_damage} damage. You have died.")
 
     elif current_room == "slimy room":
 
 
-print("You died!")
 
 
-#lets try building an enemy then a combat encounter.
-#start off with a slime? since we have a "Slimy Room"
-enemy_type = "Slime"
-enemy_name = "Green Slime"
-enemy_health = 10
-enemy_damage = random.randint(2, 4)
-enemy_exp = random.randint(5, 10)
-#thinking to add a loot system that is more than gold. Go ahead and set variable to that. For now probably just gold.
-enemy_loot = random.randint(1, 10)
+
+
+
+
+
