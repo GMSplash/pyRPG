@@ -29,13 +29,29 @@ current_weapon = "Unarmed"
 weapon_stash = []
 
 # Enemies:
-enemy_type = "Slime"
-enemy_name = "Green Slime"
-enemy_health = 10
-enemy_damage = 0
-enemy_exp = random.randint(5, 10)
-#thinking to add a loot system that is more than gold. Go ahead and set variable to that. For now probably just gold.
-enemy_loot = random.randint(1, 10)
+slime: {
+    enemy_family = "Slime",
+    name = "Green Slime",
+    health = 10,
+    damage = 0,
+    exp = random.randint(3, 5),
+    #thinking to add a loot system that is more than gold. Go ahead and set variable to that. For now probably just gold.
+    gold = random.randint(1, 10)
+}
+goblin: {
+    enemy_family = "Humanoid",
+    name = "Goblin",
+    health = 15,
+    damage = 0,
+    exp = random.randint(5, 8),
+    gold = random.randint(5, 10)
+}
+
+# spawn tables:
+sewer_spawns = [slime, slime, slime, slime, slime, slime, slime, slime, goblin, goblin, goblin]
+
+# functions:
+def spawn_enemy(pool): return random.choice(pool).copy()
 
 # exploration:
 current_room = "entryway"
@@ -192,8 +208,9 @@ while game_running == True:
             
         elif move_choice == 5:
             print("A green blob rolls infront of you. The blob suddenly shudders and jumps at you!")
+            current_enemy = spawn_enemy(sewer_spawns)
 
-            while enemy_health > 0 and char_health > 0:
+            while current_enemy["health"] > 0 and char_health > 0:
 
 
                 print("1. Attack")
@@ -204,28 +221,28 @@ while game_running == True:
 
                 if char_choice == 1:
                         damage = random.randint(1, 3) + char_str
-                        enemy_health -= damage
+                        current_enemy["health"] -= damage
                         
-                        if enemy_health > 0:
-                            print(f"You dealt {damage} to the Green Slime.")
+                        if current_enemy["health"] > 0:
+                            print(f"You dealt {damage} to the {current_enemy['name']}.")
                         
                         else:
-                            print("You killed the slime!")
-                            char_exp += enemy_exp
-                            gold += enemy_loot
-                            print(f"You gained {enemy_exp}EXP and {enemy_loot}gold.")
+                            print(f"You killed the {current_enemy['name']}!")
+                            char_exp += current_enemy["exp"]
+                            gold += current_enemy["gold"]
+                            print(f"You gained {current_enemy['exp']}EXP and {current_enemy['gold']}gold.")
                 
                 elif char_choice == 2:
                     print("You take a defensive stance.")
                     print("The Slime attacks you!")
-                    enemy_damage = random.randint(1, 3)
-                    char_health -= enemy_damage - char_con
+                    current_enemy["damage"] = random.randint(1, 3)
+                    char_health -= current_enemy["damage"] - char_con
                         
                     if char_health > 0:
-                        print(f"You take {enemy_damage} damage. You were able to block {char_con} due to your defensive stance")
+                        print(f"You take {current_enemy['damage']} damage. You were able to block {char_con} due to your defensive stance")
 
                     else:
-                        print(f"You take {enemy_damage} damage. You have died.")
+                        print(f"You take {current_enemy['damage']} damage. You have died.")
 
     elif current_room == "slimy room":
 
