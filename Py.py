@@ -29,22 +29,21 @@ current_weapon = "Unarmed"
 weapon_stash = []
 
 # Enemies:
-slime: {
-    enemy_family = "Slime",
-    name = "Green Slime",
-    health = 10,
-    damage = 0,
-    exp = random.randint(3, 5),
-    #thinking to add a loot system that is more than gold. Go ahead and set variable to that. For now probably just gold.
-    gold = random.randint(1, 10)
+slime = {
+    "enemy_family": "Slime",
+    "name": "Green Slime",
+    "health": 10,
+    "damage": 0,
+    "exp": random.randint(3, 5),
+    "gold": random.randint(1, 10)
 }
-goblin: {
-    enemy_family = "Humanoid",
-    name = "Goblin",
-    health = 15,
-    damage = 0,
-    exp = random.randint(5, 8),
-    gold = random.randint(5, 10)
+goblin = {
+    "enemy_family": "Humanoid",
+    "name": "Goblin",
+    "health": 15,
+    "damage": 0,
+    "exp": random.randint(5, 8),
+    "gold": random.randint(5, 10)
 }
 
 # spawn tables:
@@ -163,7 +162,7 @@ while game_running == True:
         elif move_choice == 2:
             current_room = "entryway"
 
-    elif current_room == "iron gate":
+    elif current_room = "iron gate":
 
         print(
             "You move to the left. Blocking your way is a small wrought iron gate. The latch is open. You could push it open easily."
@@ -245,12 +244,4 @@ while game_running == True:
                         print(f"You take {current_enemy['damage']} damage. You have died.")
 
     elif current_room == "slimy room":
-
-
-
-
-
-
-
-
-
+        
